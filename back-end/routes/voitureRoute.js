@@ -5,16 +5,16 @@ import { addVoitureController, deleteVoitureController, editVoitureController, g
 const router = Router();
 
 // ================= GET =====================
-router.get("/voiture", getAllVoitureController);
-router.get("/voiture", getOneVoitureController);
+router.get("/", getAllVoitureController);
+router.get("/", getOneVoitureController);
 
 // ================= POST ====================
-router.post("/voiture", addVoitureController);
+router.post("/", addVoitureController);
 
 // ================= DELETE ===================
-router.delete("/voiture", deleteVoitureController);
+router.delete("/", deleteVoitureController);
 
 // ================= PUT ======================
-router.put("/voiture/:id", editVoitureController);
+router.put("/:id", editVoitureController);
 
 export default router;
