@@ -7,6 +7,7 @@ const motoSchema = new mongoose.Schema({
   prix: Number,
   description: String,
   photo: String,
+  immatriculation: String,
 });
 
 const Moto = mongoose.model("moto", motoSchema);
