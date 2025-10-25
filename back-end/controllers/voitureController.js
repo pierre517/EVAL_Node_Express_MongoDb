@@ -21,7 +21,7 @@ export async function getOneVoitureController(req, res) {}
 
 export async function addVoitureController() {
   const addVoiture = await getAllVoiture();
-  const voiture = addVoiture.find((v) => v.modele == req.body.modele);
+  const voiture = addVoiture.find((v) => v.immatricullation == req.body.immatricullation);
 
   if (voiture){
     return res.status(200).json({message : "Ce modèle existe déjà !"})
