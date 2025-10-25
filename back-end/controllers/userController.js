@@ -5,6 +5,7 @@ import {
   updateUser,
   getUser,
 } from "../models/user.js";
+import bcrypt from "bcrypt";
 
 export async function getAllUsersController(req, res) {
   const allUsers = await getAllUsers();
@@ -49,9 +50,9 @@ export async function addUserController(req, res) {
     });
   }
 
-  await bcrypt.hash(req.body.password);
+  req.body.password = await bcrypt.hash(req.body.password, 10);
 
-  const newUser = await addUser(user);
+  const newUser = await addUser(req.body);
   return res
     .status(200)
     .json({ message: "user créé avec succes", user: newUser });
@@ -108,9 +109,13 @@ export async function loginController(req, res) {
   const allUsers = await getAllUsers();
   const user = allUsers.find((u) => u.email == req.body.email);
 
- const passwordHash = await bcrypt.compare(req.body.password, user.password);
+  if (!user) {
+    return res.status(400).json({ message: "email ou mot de passe incorrect" });
+  }
 
-  if (!user || passwordHash !== req.body.password) {
+  const passwordOk = await bcrypt.compare(req.body.password, user.password);
+
+  if (!passwordOk) {
     return res.status(400).json({ message: "email ou mot de passe incorrect" });
   }
   res
