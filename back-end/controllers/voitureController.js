@@ -21,7 +21,7 @@ export async function getOneVoitureController(req, res) {}
 
 export async function addVoitureController() {
   const addVoiture = await getAllVoiture();
-  const voiture = addVoiture.find((v) => v.immatricullation == req.body.immatricullation);
+  const voiture = addVoiture.find((v) => v.modele == req.body.modele);
 
   if (voiture){
     return res.status(200).json({message : "Ce modèle existe déjà !"})
@@ -50,7 +50,7 @@ export async function deleteVoitureController() {
 // ##################################### Modifier des voitures #############################################
 
 export async function editVoitureController(req, res) {
-    const id = req.params.id;
+    const id = req.params.immatricullation;
     const updateVoiture = req.body;
 
     const voiture = await editVoiture(id, updateVoiture);
