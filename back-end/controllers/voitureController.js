@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 
 import {
+  addVoiture,
   deleteVoiture,
   editVoiture,
   getAllVoiture,
@@ -33,9 +34,9 @@ export async function getOneVoitureController(req, res) {
 
 // ##################################### ajouter des voitures #############################################
 
-export async function addVoitureController() {
-  const addVoiture = await getAllVoiture();
-  const voiture = addVoiture.find(
+export async function addVoitureController(req, res) {
+  const allVoitures = await getAllVoiture();
+  const voiture = allVoitures.find(
     (v) => v.immatricullation == req.body.immatricullation
   );
 
@@ -56,24 +57,34 @@ export async function addVoitureController() {
       .json({ message: "Veuillez remplir tout les champs" });
   }
 
-  const newVoiture = await addVoiture(req.body);
+  const newVoiture = await addVoiture(req.body); 
   return res
-    .status(400)
-    .json({ message: "La voiture à bien était ajoutée", voiture: newVoiture });
+    .status(200)
+    .json({ message: "La voiture à bien été ajoutée", voiture: newVoiture });
 }
 
 // ##################################### Suppr des voitures #############################################
 
-export async function deleteVoitureController() {
-  const voiture = await deleteVoiture();
-  const deleteVoiture = voiture.find(
-    (v) => v.immatricullation == req.body.immatricullation
-  );
+export async function deleteVoitureController(req, res) {
+  const id = req.params.id;
 
-  if (!voiture) {
-    return res.status(400).json({ message: "La voiture n'existe pas" });
+  if (!id) {
+    return res.status(400).json({ message: "Identifiant manquant" });
   }
-  return res.status(200).json({ message: "Voiture supprimé !" });
+
+  try {
+    const deletedVoiture = await deleteVoiture(id);
+
+    if (!deletedVoiture) {
+      return res.status(404).json({ message: "La voiture n'existe pas" });
+    }
+
+    return res
+      .status(200)
+      .json({ message: "Voiture supprimée !", voiture: deletedVoiture });
+  } catch (error) {
+    return res.status(500).json({ message: "Erreur serveur", error: error.message });
+  }
 }
 
 // ##################################### Modifier des voitures #############################################
