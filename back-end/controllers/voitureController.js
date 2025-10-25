@@ -5,7 +5,7 @@ import {
   editVoiture,
   getAllVoiture,
   getOneVoiture,
-} from "../models/voiture";
+} from "../models/voiture.js";
 import { json } from "express";
 
 // ##################################### Récuprer toutes les voitures #############################################
