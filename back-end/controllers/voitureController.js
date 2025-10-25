@@ -5,7 +5,7 @@ import {
   editVoiture,
   getAllVoiture,
   getOneVoiture,
-} from "../models/voiture";
+} from "../models/voiture.js";
 import { json } from "express";
 
 // ##################################### Récuprer toutes les voitures #############################################
@@ -28,7 +28,7 @@ export async function getOneVoitureController(req, res) {
     return res.status(400).json({ message: "Voiture n'existe pas" });
   }
 
-  return res.status(200).json({oneVoiture});
+  return res.status(200).json({ oneVoiture });
 }
 
 // ##################################### ajouter des voitures #############################################
