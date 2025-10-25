@@ -5,6 +5,7 @@ const voitureShema = new mongoose.Schema({
   marque: String,
   modele: String,
   prix: Number,
+  immatricullation: String,
   description: String,
   photo: String,
 });

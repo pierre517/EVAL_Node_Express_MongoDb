@@ -1,5 +1,10 @@
 import mongoose from "mongoose";
-import { deleteVoiture, editVoiture, getAllVoiture } from "../models/voiture";
+import {
+  deleteVoiture,
+  editVoiture,
+  getAllVoiture,
+  getOneVoiture,
+} from "../models/voiture";
 import { json } from "express";
 
 // ##################################### Récuprer toutes les voitures #############################################
@@ -15,49 +20,72 @@ export async function getAllVoitureController(req, res) {
 
 // ##################################### Récuprer une voiture #############################################
 
-export async function getOneVoitureController(req, res) {}
+export async function getOneVoitureController(req, res) {
+  const oneVoiture = getOneVoiture();
+
+  if (!oneVoiture) {
+    return res.status(400).json({ message: "Voiture n'existe pas" });
+  }
+
+  return res.status(200).json({oneVoiture});
+}
 
 // ##################################### ajouter des voitures #############################################
 
 export async function addVoitureController() {
   const addVoiture = await getAllVoiture();
-  const voiture = addVoiture.find((v) => v.modele == req.body.modele);
+  const voiture = addVoiture.find(
+    (v) => v.immatricullation == req.body.immatricullation
+  );
 
-  if (voiture){
-    return res.status(200).json({message : "Ce modèle existe déjà !"})
+  if (voiture) {
+    return res.status(200).json({ message: "Cette voiture existe déjà !" });
   }
 
   if (
     !req.body.marque ||
     !req.body.modele ||
     !req.body.prix ||
+    !req.body.immatricullation ||
     !req.body.description ||
     !req.body.photo
-  ){
-    return res.status(400).json({message : "Veuillez remplir tout les champs"});
+  ) {
+    return res
+      .status(400)
+      .json({ message: "Veuillez remplir tout les champs" });
   }
 
   const newVoiture = await addVoiture(req.body);
-  return res.status(400).json({message : "La voiture à bien était ajoutée", voiture : newVoiture})
+  return res
+    .status(400)
+    .json({ message: "La voiture à bien était ajoutée", voiture: newVoiture });
 }
 
 // ##################################### Suppr des voitures #############################################
 
 export async function deleteVoitureController() {
-    const delVoiture = await deleteVoiture().find((v) => v.id == id);
+  const voiture = await deleteVoiture();
+  const deleteVoiture = voiture.find(
+    (v) => v.immatricullation == req.body.immatricullation
+  );
+
+  if (!voiture) {
+    return res.status(400).json({ message: "La voiture n'existe pas" });
+  }
+  return res.status(200).json({ message: "Voiture supprimé !" });
 }
 
 // ##################################### Modifier des voitures #############################################
 
 export async function editVoitureController(req, res) {
-    const id = req.params.id;
-    const updateVoiture = req.body;
+  const id = req.params.id;
+  const updateVoiture = req.body;
 
-    const voiture = await editVoiture(id, updateVoiture);
+  const voiture = await editVoiture(id, updateVoiture);
 
-    if(!voiture){
-        return res.status(400).json({message : "Aucune modification faite"})
-    }
+  if (!voiture) {
+    return res.status(400).json({ message: "Aucune modification faite" });
+  }
 
-    return res.status(400).json({message : "Voiture modifier"})
+  return res.status(400).json({ message: "Voiture modifier" });
 }

@@ -1,11 +1,13 @@
 import { connectDb } from "./config/database.js";
+import voitureRoute from "./controllers/voitureController.js";
+import express from "express";
 
 connectDb();
-
-import express from "express";
 
 const app = express();
 const port = 3000;
 app.use(express.json());
+
+app.use("/api", voitureRoute);
 
 app.listen(port, () => console.log(`server started on port ${port}`));
