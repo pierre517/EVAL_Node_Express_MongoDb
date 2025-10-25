@@ -23,7 +23,7 @@ export async function getAllMotosController(req, res) {
 // --------------------------------------------------------//
 
 export async function addMotoController(req, res) {
-  const allMotos = await getAllmotos();
+  const allMotos = await getAllMotos();
   const moto = allMotos.find(
     (x) => x.immatriculation == req.body.immatriculation
   );
@@ -54,13 +54,13 @@ export async function addMotoController(req, res) {
 // ----------------------------------------------------------//
 
 export async function deleteMotoController(req, res) {
-  const allMotos = await getAllmotos();
+  const allMotos = await getAllMotos();
   const moto = allMotos.find(
     (x) => x.immatriculation == req.body.immatriculation
   );
 
   if (!moto) {
-    return res.status(400).json({ message: "cette voiture n'existe pas" });
+    return res.status(400).json({ message: "cette moto n'existe pas" });
   }
 
   if (deleteMoto(moto)) {
