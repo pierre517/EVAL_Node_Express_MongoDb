@@ -1,12 +1,12 @@
 import { Router } from "express";
-import { addVoitureController, deleteVoitureController, editVoitureController, getAllVoitureController, getOneVoitureController } from "../controllers/voitureController";
+import { addVoitureController, deleteVoitureController, editVoitureController, getAllVoitureController, getOneVoitureController } from "../controllers/voitureController.js";
 
 
 const router = Router();
 
 // ================= GET =====================
 router.get("/", getAllVoitureController);
-router.get("/", getOneVoitureController);
+router.get("/:id", getOneVoitureController);
 
 // ================= POST ====================
 router.post("/", addVoitureController);

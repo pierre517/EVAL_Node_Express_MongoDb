@@ -1,5 +1,7 @@
 import { connectDb } from "./config/database.js";
-import {voitureRoute, motoRoute, userRoute} from "./controllers/voitureController.js";
+import voitureRoute from "./routes/voitureRoute.js";
+import motoRoute from "./routes/motoRoute.js";
+import userRoute from "./routes/userRoute.js";
 import express from "express";
 
 connectDb();
