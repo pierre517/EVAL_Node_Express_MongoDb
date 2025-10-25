@@ -60,7 +60,7 @@ export async function deleteMotoController(req, res) {
   );
 
   if (!moto) {
-    return res.status(400).json({ message: "cette voiture n'existe pas" });
+    return res.status(400).json({ message: "cette moto n'existe pas" });
   }
 
   if (deleteMoto(moto)) {

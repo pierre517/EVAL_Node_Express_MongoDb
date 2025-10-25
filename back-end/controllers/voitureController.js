@@ -1,5 +1,3 @@
-import mongoose from "mongoose";
-
 import {
   addVoiture,
   deleteVoiture,
@@ -7,7 +5,6 @@ import {
   getAllVoiture,
   getOneVoiture,
 } from "../models/voiture.js";
-import { json } from "express";
 
 // ##################################### Récuprer toutes les voitures #############################################
 
@@ -15,21 +12,22 @@ export async function getAllVoitureController(req, res) {
   const allVoitures = await getAllVoiture();
 
   if (allVoitures.length === 0) {
-    res.status(400).json({ message: "La voiture n'existe pas" });
+    res.status(400).json({ message: "il n'y a aucune voiture a présenter" });
   }
-  return res.status(200).json({ allVoitures });
+  return res.status(200).json(allVoitures);
 }
 
 // ##################################### Récuprer une voiture #############################################
 
 export async function getOneVoitureController(req, res) {
-  const oneVoiture = getOneVoiture();
+  const id = req.params.id;
+  const oneVoiture = getOneVoiture(id);
 
   if (!oneVoiture) {
-    return res.status(400).json({ message: "Voiture n'existe pas" });
+    return res.status(400).json({ message: "cette voiture n'existe pas" });
   }
 
-  return res.status(200).json({ oneVoiture });
+  return res.status(200).json(oneVoiture);
 }
 
 // ##################################### ajouter des voitures #############################################
@@ -37,18 +35,18 @@ export async function getOneVoitureController(req, res) {
 export async function addVoitureController(req, res) {
   const allVoitures = await getAllVoiture();
   const voiture = allVoitures.find(
-    (v) => v.immatricullation == req.body.immatricullation
+    (v) => v.immatriculation == req.body.immatriculation
   );
 
   if (voiture) {
-    return res.status(200).json({ message: "Cette voiture existe déjà !" });
+    return res.status(400).json({ message: "Cette voiture existe déjà !" });
   }
 
   if (
     !req.body.marque ||
     !req.body.modele ||
     !req.body.prix ||
-    !req.body.immatricullation ||
+    !req.body.immatriculation ||
     !req.body.description ||
     !req.body.photo
   ) {
@@ -57,7 +55,7 @@ export async function addVoitureController(req, res) {
       .json({ message: "Veuillez remplir tout les champs" });
   }
 
-  const newVoiture = await addVoiture(req.body); 
+  const newVoiture = await addVoiture(req.body);
   return res
     .status(200)
     .json({ message: "La voiture à bien été ajoutée", voiture: newVoiture });
@@ -66,24 +64,17 @@ export async function addVoitureController(req, res) {
 // ##################################### Suppr des voitures #############################################
 
 export async function deleteVoitureController(req, res) {
-  const id = req.params.id;
+  const allVoitures = await getAllVoiture();
+  const voiture = allVoitures.find(
+    (x) => x.immatriculation == req.body.immatriculation
+  );
 
-  if (!id) {
-    return res.status(400).json({ message: "Identifiant manquant" });
+  if (!voiture) {
+    return res.status(400).json({ message: "cette voiture n'existe pas" });
   }
 
-  try {
-    const deletedVoiture = await deleteVoiture(id);
-
-    if (!deletedVoiture) {
-      return res.status(404).json({ message: "La voiture n'existe pas" });
-    }
-
-    return res
-      .status(200)
-      .json({ message: "Voiture supprimée !", voiture: deletedVoiture });
-  } catch (error) {
-    return res.status(500).json({ message: "Erreur serveur", error: error.message });
+  if (deleteVoiture(voiture)) {
+    return res.status(200).json({ message: "voiture supprimée avec succes" });
   }
 }
 
@@ -96,8 +87,10 @@ export async function editVoitureController(req, res) {
   const voiture = await editVoiture(id, updateVoiture);
 
   if (!voiture) {
-    return res.status(400).json({ message: "Aucune modification faite" });
+    return res.status(400).json({ message: "cette voiture n'existe pas" });
   }
 
-  return res.status(400).json({ message: "Voiture modifier" });
+  return res
+    .status(200)
+    .json({ message: "Voiture modifier avec succes", voiture });
 }

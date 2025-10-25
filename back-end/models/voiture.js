@@ -5,7 +5,7 @@ const voitureShema = new mongoose.Schema({
   marque: String,
   modele: String,
   prix: Number,
-  immatricullation: String,
+  immatriculation: String,
   description: String,
   photo: String,
 });
@@ -25,19 +25,19 @@ export async function getAllVoiture() {
 
 // ##################################### Récuprer une voiture #############################################
 
-export async function getOneVoiture(id){
-    try {
-        return await Voiture.findById(id)
-    } catch (error) {
-        console.log(error);
-    }
+export async function getOneVoiture(id) {
+  try {
+    return await Voiture.findById(id);
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 // ##################################### Ajouter une voiture ######################################################
 
 export async function addVoiture(newVoiture) {
   try {
-    return await Voiture.create(newVoiture);
+    await Voiture.create(newVoiture);
   } catch (error) {
     console.log(error);
   }
@@ -47,10 +47,11 @@ export async function addVoiture(newVoiture) {
 
 export async function deleteVoiture(voiture) {
   try {
-    return await Pilote.deleteOne(voiture);
+    return await Voiture.deleteOne(voiture);
   } catch (error) {
     console.log(error);
   }
+  return true;
 }
 
 // ##################################### Put une voiture ########################################################
@@ -60,7 +61,7 @@ export async function editVoiture(voitureId, update) {
     const newVoiture = Voiture.findByIdAndUpdate(
       voitureId,
       {
-        set: {
+        $set: {
           marque: update.marque,
           modele: update.modele,
           prix: update.prix,
