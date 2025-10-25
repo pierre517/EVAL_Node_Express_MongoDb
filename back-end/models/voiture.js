@@ -64,7 +64,6 @@ export async function editVoiture(voitureId, update) {
           marque: update.marque,
           modele: update.modele,
           prix: update.prix,
-          immatricullation: update.immatricullation,
           description: update.description,
           photo: update.photo,
         },
