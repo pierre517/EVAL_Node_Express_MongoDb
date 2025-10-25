@@ -1,5 +1,5 @@
 import {
-  getAllmotos,
+  getAllMotos,
   addMoto,
   deleteMoto,
   updateMoto,
@@ -9,7 +9,7 @@ import {
 // --------------------------------------------------------//
 
 export async function getAllMotosController(req, res) {
-  const allMotos = await getAllmotos();
+  const allMotos = await getAllMotos();
 
   if (allMotos.length === 0) {
     return res
