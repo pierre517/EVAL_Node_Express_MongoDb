@@ -49,7 +49,9 @@ export async function addUserController(req, res) {
     });
   }
 
-  const newUser = await addUser(req.body);
+  await bcrypt.hash(req.body.password);
+
+  const newUser = await addUser(user);
   return res
     .status(200)
     .json({ message: "user créé avec succes", user: newUser });
@@ -106,7 +108,9 @@ export async function loginController(req, res) {
   const allUsers = await getAllUsers();
   const user = allUsers.find((u) => u.email == req.body.email);
 
-  if (!user || user.password !== req.body.password) {
+ const passwordHash = await bcrypt.compare(req.body.password, user.password);
+
+  if (!user || passwordHash !== req.body.password) {
     return res.status(400).json({ message: "email ou mot de passe incorrect" });
   }
   res
