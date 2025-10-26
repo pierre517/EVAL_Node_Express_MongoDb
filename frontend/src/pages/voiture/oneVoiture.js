@@ -42,7 +42,6 @@ function afficherVoiture(v) {
   main.appendChild(card);
 }
 
-// Version simple : récupère l'ID et charge la voiture. Utilise .then/.catch pour les débutants.
 function initVoiture() {
   const params = new URLSearchParams(window.location.search);
   const id = params.get("id");
