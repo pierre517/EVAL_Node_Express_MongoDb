@@ -1,6 +1,6 @@
 import { getDataAllMotos } from "../../api/api";
 
-export async function essai() {
+export async function displayAllMoto() {
   let main = document.querySelector("main");
 
   const motos = await getDataAllMotos();
@@ -35,4 +35,4 @@ export async function essai() {
     main.appendChild(card);
   });
 }
-essai();
+
