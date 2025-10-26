@@ -1,2 +1,3 @@
-import { getDataAllVoitures } from './src/api/api.js';
-getDataAllVoitures();
+import { essai } from "./src/pages/voiture.js";
+
+essai();
