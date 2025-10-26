@@ -3,12 +3,14 @@ import voitureRoute from "./routes/voitureRoute.js";
 import motoRoute from "./routes/motoRoute.js";
 import userRoute from "./routes/userRoute.js";
 import express from "express";
+import cors from 'cors'
 
 connectDb();
 
 const app = express();
 const port = 3000;
 app.use(express.json());
+app.use(cors());
 
 app.use("/voitures", voitureRoute);
 app.use("/motos", motoRoute);
