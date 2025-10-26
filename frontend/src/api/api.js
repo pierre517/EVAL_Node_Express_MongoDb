@@ -1,9 +1,9 @@
 // ------------------voitures----------------------------//
 
 export async function getDataAllVoitures() {
-    const response = fetch("http://localhost:3000/voitures");
-    const voitures = (await response).json();
-     console.log(voitures);
+  const response = fetch("http://localhost:3000/voitures");
+  const voitures = (await response).json();
+  return voitures;
 }
 
 export async function getDataOneVoiture(id) {
@@ -15,7 +15,7 @@ export async function getDataOneVoiture(id) {
 // ---------------------------motos----------------------//
 
 export async function getDataAllMotos() {
-  const response = fetch("http://localhost:3000/voitures");
+  const response = fetch("http://localhost:3000/motos");
   const motos = (await response).json();
   return motos;
 }
