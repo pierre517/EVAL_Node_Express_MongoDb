@@ -1,3 +1,11 @@
 import { chargerDonnees } from "../../local_storage/localStorage.js";
 
-const user = chargerDonnees();
+function afficherUser() {
+  const user = chargerDonnees();
+
+  const titre = document.getElementById("titreUser");
+
+  titre.textContent = user.nom;
+}
+
+afficherUser();
