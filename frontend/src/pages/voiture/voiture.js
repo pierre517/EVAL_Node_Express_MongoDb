@@ -34,6 +34,12 @@ export async function displayAllVoiture() {
       card.appendChild(img);
     }
 
+    card.style.cursor = "pointer";
+    card.addEventListener("click", () => {
+      const id = v._id || v.id || "";
+      window.location.href = `./oneVoiture.html?id=${encodeURIComponent(id)}`;
+    });
+
     main.appendChild(card);
   });
 }
