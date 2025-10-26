@@ -1,3 +1,5 @@
-import { essai } from "./src/pages/voiture.js";
+import { loginUser } from "./src/auth/login/login.js";
+import { registerUser } from "./src/auth/register/register.js";
 
-essai();
+registerUser();
+loginUser();
