@@ -12,8 +12,9 @@ export async function getAllVoitureController(req, res) {
   const allVoitures = await getAllVoiture();
 
   if (allVoitures.length === 0) {
-    res.status(400).json({ message: "il n'y a aucune voiture a présenter" });
+    return res.status(400).json({ message: "il n'y a aucune voiture a présenter" });
   }
+
   return res.status(200).json(allVoitures);
 }
 
@@ -21,7 +22,7 @@ export async function getAllVoitureController(req, res) {
 
 export async function getOneVoitureController(req, res) {
   const id = req.params.id;
-  const oneVoiture = getOneVoiture(id);
+  const oneVoiture = await getOneVoiture(id);
 
   if (!oneVoiture) {
     return res.status(400).json({ message: "cette voiture n'existe pas" });
