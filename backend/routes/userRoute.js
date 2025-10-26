@@ -5,14 +5,14 @@ import {
   getAllUsersController,
   loginController,
   updateUserController,
-  getUserById, 
+  getUserById,
 } from "../controllers/userController.js";
 
 const router = Router();
 
 // ================= GET =====================
 router.get("/", getAllUsersController);
-router.get("/:id", getUserById); 
+router.get("/:id", getUserById);
 
 // ================= POST ====================
 router.post("/", addUserController);
