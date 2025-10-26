@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			if (res.ok) {
 				// Le backend renvoie { message: 'user créé avec succes', user: newUser }
 				alert(data.message || "Inscription réussie.");
-				form.reset();
+				window.location.href = '../../../index.html';
 			} else {
 				// Affiche le message d'erreur renvoyé par le serveur
 				alert(data.message || `Erreur: ${res.status}`);
