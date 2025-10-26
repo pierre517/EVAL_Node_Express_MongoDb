@@ -1,3 +1,5 @@
+import { saveUsers } from "../../local_storage/localStorage.js";
+
 export function loginUser() {
 	const form = document.getElementById('login');
 	form.addEventListener('submit', async (e) => {
@@ -25,7 +27,8 @@ export function loginUser() {
 
 			if (res.ok) {
 				alert(data.message || 'Connexion réussie.');
-				window.location.href = '/index.html';
+				saveUsers();
+				window.location.href = '../../../index.html';
 			} else {
 				alert(data.message || `Erreur: ${res.status}`);
 			}
