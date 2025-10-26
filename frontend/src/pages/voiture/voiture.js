@@ -7,7 +7,7 @@ export async function displayAllVoiture() {
 
   voitures.forEach((v) => {
     const card = document.createElement("div");
-    card.className = "car-card";
+    card.className = "vehicule-card";
 
     const title = document.createElement("h3");
     title.textContent = v.marque || v.modele || "Voiture";
@@ -26,11 +26,13 @@ export async function displayAllVoiture() {
       " €";
     card.appendChild(info);
 
-    const img = document.createElement("img");
-    img.src = v.photo;
-    img.alt = "Voiture";
-    img.style.maxWidth = "100%";
-    card.appendChild(img);
+    if (v.photo) {
+      const img = document.createElement("img");
+      img.src = v.photo;
+      img.alt = "Voiture";
+      img.style.maxWidth = "100%";
+      card.appendChild(img);
+    }
 
     main.appendChild(card);
   });
