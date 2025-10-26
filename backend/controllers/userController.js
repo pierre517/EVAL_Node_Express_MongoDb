@@ -118,7 +118,7 @@ export async function loginController(req, res) {
   if (!passwordOk) {
     return res.status(400).json({ message: "email ou mot de passe incorrect" });
   }
-  res
+  return res
     .status(200)
-    .json({ message: "connexion réussie, bienvenue " + user.name });
+    .json({ message: "connexion réussie, bienvenue " + user.name, user: user });
 }

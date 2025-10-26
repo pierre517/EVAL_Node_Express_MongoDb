@@ -27,7 +27,7 @@ export function loginUser() {
 
       if (res.ok) {
         alert(data.message || "Connexion réussie.");
-        saveUsers();
+        saveUsers(data.user);
         window.location.href = "src/pages/user/user.html";
       } else {
         alert(data.message || `Erreur: ${res.status}`);

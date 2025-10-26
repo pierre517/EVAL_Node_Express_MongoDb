@@ -5,7 +5,7 @@ function afficherUser() {
 
   const titre = document.getElementById("titreUser");
 
-  titre.textContent = user.nom;
+  titre.textContent = `bonjour ${user.name}`;
 }
 
 afficherUser();
