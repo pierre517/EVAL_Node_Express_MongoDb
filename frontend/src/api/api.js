@@ -3,7 +3,7 @@
 export async function getDataAllVoitures() {
   const response = await fetch("http://localhost:3000/voitures");
   const voitures = await response.json();
-  console.log(voitures);
+  return voitures;
 }
 
 export async function getDataOneVoiture(id) {
