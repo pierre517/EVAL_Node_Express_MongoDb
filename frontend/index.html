@@ -9,15 +9,15 @@
       integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="../../styles/style.css" />
+    <link rel="stylesheet" href="./src/styles/style.css" />
     <title>Ma collection</title>
   </head>
   <body>
     <header>
       <h1 class="text-center mb-4">Ma Concession</h1>
     </header>
-    <main class="container my-5">
-      <h2 class="mb-3">Login</h2>
+    <main class="container my-4">
+      <h2 class="mb-3">connexion</h2>
       <form action="" method="post" id="login">
         <label for="email" class="form-label">email</label>
         <input
@@ -39,8 +39,16 @@
           required
         />
 
-        <input type="submit" id="submit" value="Se connecter" class="btn btn-primary" />
+        <input
+          type="submit"
+          id="submit"
+          value="Se connecter"
+          class="btn btn-primary"
+        />
       </form>
+      <a href="src/auth/register/register.html"
+        >vous nêtes pas inscrit ? cliquez ici</a
+      >
     </main>
     <footer><p>copyright Beweb 2025</p></footer>
     <script type="module" src="../../../main.js"></script>
