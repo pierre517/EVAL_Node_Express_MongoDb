@@ -35,3 +35,4 @@ export async function displayAllVoiture() {
     main.appendChild(card);
   });
 }
+displayAllVoiture();
