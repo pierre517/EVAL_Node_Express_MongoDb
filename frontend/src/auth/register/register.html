@@ -17,16 +17,26 @@
       <h1 class="text-center mb-4">Ma Concession</h1>
     </header>
     <main class="container my-5">
-      <h2 class="mb-3">Login</h2>
-      <form action="" method="post" id="login">
+      <h2 class="mb-3">Inscription</h2>
+      <form action="" method="post" id="register">
+        <label for="name" class="form-label">nom</label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          placeholder="entrez votre pseudo"
+          required
+          class="form-control mb-3"
+        />
+
         <label for="email" class="form-label">email</label>
         <input
           type="text"
           name="email"
           id="email"
-          class="form-control mb-3"
           placeholder="entrez votre email"
           required
+          class="form-control mb-3"
         />
 
         <label for="password" class="form-label">mot de passe</label>
@@ -34,15 +44,22 @@
           type="password"
           name="password"
           id="password"
-          class="form-control mb-3"
           placeholder="entrez votre mot de passe"
           required
+          class="form-control mb-3"
         />
 
-        <input type="submit" id="submit" value="Se connecter" class="btn btn-primary" />
+        <input
+          type="submit"
+          id="submit"
+          value="S'inscrire"
+          class="btn btn-primary"
+        />
       </form>
     </main>
-    <footer><p>copyright Beweb 2025</p></footer>
+    <footer>
+      <p class="text-center mt-4">copyright Beweb 2025</p>
+    </footer>
     <script type="module" src="../../../main.js"></script>
   </body>
 </html>
