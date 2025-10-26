@@ -1,4 +1,4 @@
-import { getDataAllMotos } from "../../api/api";
+import { getDataAllMotos } from "../../api/api.js";
 
 export async function displayAllMoto() {
   let main = document.querySelector("main");
@@ -26,11 +26,19 @@ export async function displayAllMoto() {
       " €";
     card.appendChild(info);
 
-    const img = document.createElement("img");
-    img.src = m.photo;
-    img.alt = "moto";
-    img.style.maxWidth = "100%";
-    card.appendChild(img);
+    if (m.photo) {
+      const img = document.createElement("img");
+      img.src = m.photo;
+      img.alt = "Moto";
+      img.style.maxWidth = "100%";
+      card.appendChild(img);
+    }
+
+    card.style.cursor = "pointer";
+    card.addEventListener("click", () => {
+      const id = m._id || m.id || "";
+      window.location.href = `./oneMoto.html?id=${encodeURIComponent(id)}`;
+    });
 
     main.appendChild(card);
   });

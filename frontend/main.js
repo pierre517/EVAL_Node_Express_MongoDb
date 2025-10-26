@@ -3,4 +3,3 @@ import { registerUser } from "./src/auth/register/register.js";
 
 registerUser();
 loginUser();
-displayAllMoto();
