@@ -21,6 +21,11 @@ body {
 .vehicle-card {
   border-radius: 8px;
   overflow: hidden;
+  margin-top: 8vh;
+}
+
+.moto-page .vehicle-card {
+  margin-top: 4vh;
 }
 
 .vehicle-card .card-img-top {

@@ -2,7 +2,8 @@ import { getDataAllMotos } from "../../api/api.js";
 
 export async function displayAllMoto() {
   const main = document.querySelector("main");
-  main.classList.add("container", "my-4");
+  
+  main.classList.add("container", "my-4", "moto-page");
 
   const motos = await getDataAllMotos();
 
