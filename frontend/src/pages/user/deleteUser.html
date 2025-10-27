@@ -26,14 +26,28 @@
       </nav>
     </header>
 
-    <main class="mainUser">
-      <h2 id="titreUser"></h2>
-      <div class="divUser">
-        <a href="" class="modifUser">modifier mon profil</a>
-        <a href="./deleteUser.html" class="deleteUser">supprimer mon profil</a>
-      </div>
+    <main class="deleteMain">
+      <h2 class="titreDeleteUser">suppression du compte</h2>
+      <form action="" id="deleteUser">
+        <label for="email" class="labelDelete"
+          >confirmez votre email pour supprimer votre compte</label
+        >
+        <input
+          type="text"
+          name="email"
+          id="email"
+          placeholder="entrez votre email"
+          required
+          class="inputDelete"
+        />
+        <input
+          type="submit"
+          value="supprimer mon compte"
+          class="deleteUserButton"
+        />
+      </form>
     </main>
     <footer><p>copyright Beweb 2025</p></footer>
-    <script type="module" src="./user.js"></script>
+    <script type="module" src="./deleteUser.js"></script>
   </body>
 </html>
