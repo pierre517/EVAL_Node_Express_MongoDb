@@ -57,5 +57,48 @@ header h1 {
   font-size: 2.25rem;
 }
 
+/* Styles pour la carte d'édition (overlay au-dessus de la card voiture) */
+.edit-card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255,255,255,0.96);
+  z-index: 20;
+  padding: 1rem;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+/* Conteneur card qui peut recevoir un overlay d'édition */
+.has-edit-overlay {
+  position: relative;
+  overflow: hidden;
+  /* un peu plus arrondi comme sur la capture */
+  border-radius: 0.75rem;
+}
+
+/* Harmoniser l'apparence de l'overlay avec la card sous-jacente */
+.has-edit-overlay .edit-card {
+  border-radius: 0.75rem;
+  box-shadow: none; /* garder l'ombre du parent plutôt que de dupliquer */
+}
+
+.edit-card .form-control {
+  margin-block-end: 0.5rem;
+}
+
+/* Agrandir le textarea à l'intérieur de la card d'édition */
+.edit-card textarea.form-control {
+  min-block-size: 180px; /* équivalent logique à min-height */
+  resize: vertical;
+}
+
+.edit-actions {
+  gap: 0.5rem;
+  align-items: center;
+}
+
 
 
