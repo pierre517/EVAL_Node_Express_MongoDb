@@ -7,50 +7,66 @@ export async function displayAllMoto() {
 
   const motos = await getDataAllMotos();
 
-  const row = document.createElement("div");
-  row.className = "row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3";
+  const ligne = document.createElement("div");
+  ligne.className = "row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3";
 
-  motos.forEach((m) => {
-    const col = document.createElement("div");
-    col.className = "col";
+  motos.forEach((moto) => {
+    const colonne = document.createElement("div");
+    colonne.className = "col";
 
-    const card = document.createElement("div");
-    card.className = "card h-100 shadow-sm vehicle-card";
-    card.style.cursor = "pointer";
+    const carte = document.createElement("div");
+    carte.className = "card h-100 shadow-sm vehicle-card";
 
-    if (m.photo) {
+    if (moto.photo) {
       const img = document.createElement("img");
-      img.src = m.photo;
+      img.src = moto.photo;
       img.alt = "Moto";
       img.className = "card-img-top";
-      card.appendChild(img);
+      carte.appendChild(img);
     }
 
-    const cardBody = document.createElement("div");
-    cardBody.className = "card-body";
+    const corpsCarte = document.createElement("div");
+    corpsCarte.className = "card-body d-flex flex-column";
 
-    const title = document.createElement("h5");
-    title.className = "card-title";
-    title.textContent = m.marque || m.modele || "Moto";
-    cardBody.appendChild(title);
+    const titre = document.createElement("h5");
+    titre.className = "card-title";
+    titre.textContent = moto.marque || moto.modele || "Moto";
+    corpsCarte.appendChild(titre);
 
-    const info = document.createElement("p");
-    info.className = "card-text text-muted";
-    info.textContent = `Marque: ${m.marque || '-'} • Modèle: ${m.modele || '-'} • Prix: ${m.prix || '-'} €`;
-    cardBody.appendChild(info);
+  const renseignements = document.createElement("div");
+  renseignements.className = "renseignements text-muted";
 
-    card.appendChild(cardBody);
+  const ligneMarque = document.createElement("div");
+  ligneMarque.textContent = `Marque: ${moto.marque || '-'}`;
+  renseignements.appendChild(ligneMarque);
 
-    card.addEventListener("click", () => {
-      const id = m._id || m.id || "";
+  const ligneModele = document.createElement("div");
+  ligneModele.textContent = `Modèle: ${moto.modele || '-'}`;
+  renseignements.appendChild(ligneModele);
+
+  const lignePrix = document.createElement("div");
+  lignePrix.textContent = `Prix: ${moto.prix || '-'} €`;
+  renseignements.appendChild(lignePrix);
+
+  corpsCarte.appendChild(renseignements);
+
+    const boutonVoir = document.createElement("button");
+    boutonVoir.type = "button";
+    boutonVoir.className = "btn btn-primary voir-btn";
+    boutonVoir.textContent = "Voir";
+    boutonVoir.addEventListener("click", () => {
+      const id = moto._id || moto.id || "";
       window.location.href = `./oneMoto.html?id=${encodeURIComponent(id)}`;
     });
 
-    col.appendChild(card);
-    row.appendChild(col);
+    corpsCarte.appendChild(boutonVoir);
+    carte.appendChild(corpsCarte);
+
+    colonne.appendChild(carte);
+    ligne.appendChild(colonne);
   });
 
-  main.appendChild(row);
+  main.appendChild(ligne);
 }
 
 displayAllMoto();
