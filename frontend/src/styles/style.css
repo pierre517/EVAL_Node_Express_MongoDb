@@ -45,10 +45,10 @@ main.container {
 .navbar {
   padding-block-start: 1rem;
   padding-block-end: 1rem;
-  min-block-size: 72px; 
+  min-block-size: 72px;
 }
 .navbar .nav-link {
-  font-size: 1.05rem; 
+  font-size: 1.05rem;
   padding-block-start: 0.35rem;
   padding-block-end: 0.35rem;
 }
@@ -57,5 +57,52 @@ header h1 {
   font-size: 2.25rem;
 }
 
+.mainUser {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
 
+.deleteMain {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
 
+#titreUser,
+.titreDeleteUser {
+  font-size: 3rem;
+  font-style: italic;
+}
+
+.divUser {
+  width: 60%;
+  display: flex;
+  justify-content: center;
+  gap: 5rem;
+}
+
+.modifUser,
+.deleteUser {
+  text-decoration: none;
+  color: black;
+  font-size: 1.2rem;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 1rem;
+}
+
+.modifUser:hover {
+  color: whitesmoke;
+  background-color: rgb(59, 59, 252);
+  transition: 0.5s;
+}
+
+.deleteUser:hover,
+.deleteUserButton:hover {
+  color: whitesmoke;
+  background-color: rgb(255, 72, 72);
+  transition: 0.5s;
+}
