@@ -26,14 +26,32 @@
       </nav>
     </header>
 
-    <main class="mainUser">
-      <h2 id="titreUser"></h2>
-      <div class="divUser">
-        <a href="./updateUser.html" class="modifUser">modifier mon profil</a>
-        <a href="./deleteUser.html" class="deleteUser">supprimer mon profil</a>
-      </div>
+    <main class="updateMain">
+      <h2 class="titreUpdateUser">modifier mon profil</h2>
+
+      <form action="" id="updateUserForm">
+        <label for="name">nouveau pseudo</label>
+        <input type="text" id="name" required />
+
+        <label for="email">nouvel email</label>
+        <input type="text" id="email" required />
+
+        <label for="ancienPassword">ancien mot de passe</label>
+        <input type="password" id="ancienPassword" required />
+
+        <label for="password">nouveau mot de passe</label>
+        <input type="password" id="password" required />
+
+        <input
+          type="submit"
+          value="mettre à jour mon profil"
+          class="modifUserButton"
+        />
+      </form>
+
+      <p id="message"></p>
     </main>
     <footer><p>copyright Beweb 2025</p></footer>
-    <script type="module" src="./user.js"></script>
+    <script type="module" src="./updateUser.js"></script>
   </body>
 </html>

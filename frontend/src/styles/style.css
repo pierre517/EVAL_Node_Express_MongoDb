@@ -45,10 +45,10 @@ main.container {
 .navbar {
   padding-block-start: 1rem;
   padding-block-end: 1rem;
-  min-block-size: 72px; 
+  min-block-size: 72px;
 }
 .navbar .nav-link {
-  font-size: 1.05rem; 
+  font-size: 1.05rem;
   padding-block-start: 0.35rem;
   padding-block-end: 0.35rem;
 }
@@ -63,7 +63,7 @@ header h1 {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(255,255,255,0.96);
+  background-color: rgba(255, 255, 255, 0.96);
   z-index: 20;
   padding: 1rem;
   overflow-y: auto;
@@ -95,5 +95,74 @@ header h1 {
   align-items: center;
 }
 
+.delete-card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255,255,255,0.98);
+  z-index: 30;
+  padding: 1rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.delete-card .confirm-input {
+  max-width: 320px;
+}
+
+.delete-card .card-title {
+  margin-bottom: 0.25rem;
+}
+
+.delete-card .card-text {
+  text-align: center;
+  max-width: 420px;
+}
 
 
+#titreUser,
+.titreDeleteUser {
+  font-size: 3rem;
+  font-style: italic;
+}
+
+.divUser {
+  width: 60%;
+  display: flex;
+  justify-content: center;
+  gap: 5rem;
+}
+
+.modifUser,
+.deleteUser {
+  text-decoration: none;
+  color: black;
+  font-size: 1.2rem;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 1rem;
+}
+.modifUserButton {
+  padding: 0.5rem;
+  border-radius: 10px;
+}
+
+.modifUser:hover,
+.modifUserButton:hover {
+  color: whitesmoke;
+  background-color: rgb(59, 59, 252);
+  transition: 0.5s;
+}
+
+.deleteUser:hover,
+.deleteUserButton:hover {
+  color: whitesmoke;
+  background-color: rgb(255, 72, 72);
+  transition: 0.5s;
+}

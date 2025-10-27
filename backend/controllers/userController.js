@@ -6,6 +6,7 @@ import {
   getUser,
 } from "../models/user.js";
 import bcrypt from "bcrypt";
+import User from "../models/user.js";
 
 export async function getAllUsersController(req, res) {
   const allUsers = await getAllUsers();
@@ -77,17 +78,31 @@ export async function deleteUserController(req, res) {
 
 export async function updateUserController(req, res) {
   const id = req.params.id;
-  const updatedUser = req.body;
+  const { ancienPassword, password, name, email } = req.body;
 
-  const user = await updateUser(id, updatedUser);
+  const userExistant = await User.findById(id);
 
-  if (!user) {
-    return res.status(400).json({ message: "cet utilisateur n'existe pas" });
+  if (!userExistant) {
+    return res.status(400).json({ message: "Cet utilisateur n'existe pas" });
   }
+
+  const passwordOk = bcrypt.compare(ancienPassword, userExistant.password);
+
+  if (!passwordOk) {
+    return res.status(400).json({ message: "ancien mot de passe incorrect" });
+  }
+
+  const passwordHash = await bcrypt.hash(password, 10);
+
+  const updatedUser = await updateUser(id, {
+    name,
+    email,
+    password: passwordHash,
+  });
 
   return res
     .status(200)
-    .json({ message: "utilisateur modifié avec succes", user });
+    .json({ message: "utilisateur modifié avec succes", user: updatedUser });
 }
 
 //------------------------------------//
