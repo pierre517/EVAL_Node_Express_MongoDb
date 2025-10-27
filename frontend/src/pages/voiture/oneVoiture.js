@@ -201,6 +201,8 @@ function initVoiture() {
         return;
       }
       afficherVoiture(voiture);
+      //On supprime l'id de l'url
+      window.history.replaceState(null, '', window.location.pathname);
     })
     .catch((err) => {
       console.error(err);

@@ -196,6 +196,8 @@ function initMoto() {
         return;
       }
       afficherMoto(moto);
+      //On supprime l'id de l'url
+      window.history.replaceState(null, '', window.location.pathname);
     })
     .catch((err) => {
       console.error(err);
