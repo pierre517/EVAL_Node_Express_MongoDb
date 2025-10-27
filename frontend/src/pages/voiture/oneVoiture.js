@@ -9,7 +9,7 @@ function afficherVoiture(v) {
   const container = document.createElement("div");
   container.className = "container d-flex align-items-start justify-content-center";
   container.style.minHeight = "70vh";
-  container.style.paddingTop = "4vh";
+  container.style.paddingTop = "8vh";
 
   const row = document.createElement("div");
   row.className = "row justify-content-center w-100";
