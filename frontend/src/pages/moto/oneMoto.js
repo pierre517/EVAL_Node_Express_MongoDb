@@ -1,5 +1,5 @@
 // Read the selected moto from the API and render its details
-import { getDataOneMoto, updateMoto } from "../../api/api.js";
+import { getDataOneMoto, updateMoto, deleteMotoByImmat } from "../../api/api.js";
 
 function afficherMoto(m) {
   const main = document.querySelector("main");
@@ -60,6 +60,13 @@ function afficherMoto(m) {
   boutonModifier.className = "btn btn-primary ms-2 mt-3";
   boutonModifier.textContent = "Modifier";
   cardBody.appendChild(boutonModifier);
+
+  // Bouton Supprimer (à droite de Modifier)
+  const boutonSupprimer = document.createElement("button");
+  boutonSupprimer.type = "button";
+  boutonSupprimer.className = "btn btn-danger ms-2 mt-3";
+  boutonSupprimer.textContent = "Supprimer";
+  cardBody.appendChild(boutonSupprimer);
 
   // Crée la carte modif pour la moto
   function creerCarteEdition(moto) {
@@ -168,6 +175,77 @@ function afficherMoto(m) {
   boutonModifier.addEventListener("click", () => {
     const carteEdition = creerCarteEdition(m);
     card.appendChild(carteEdition);
+  });
+
+  // crée la carte de confirmation suppression pour la moto
+  function creerCarteSuppressionMoto(moto) {
+    const carte = document.createElement('div');
+    carte.className = 'card shadow delete-card p-3';
+
+    const titre = document.createElement('h5');
+    titre.className = 'card-title text-danger';
+    titre.textContent = 'Confirmer la suppression';
+    carte.appendChild(titre);
+
+    const infoDel = document.createElement('p');
+    infoDel.className = 'card-text';
+    infoDel.textContent = `Pour supprimer ce véhicule, tapez son immatriculation puis cliquez sur Supprimer.`;
+    carte.appendChild(infoDel);
+
+    const label = document.createElement('label');
+    label.textContent = 'Immatriculation';
+    label.className = 'form-label';
+    carte.appendChild(label);
+
+    const input = document.createElement('input');
+    input.className = 'form-control confirm-input mb-2';
+    input.placeholder = moto.immatriculation || '';
+    carte.appendChild(input);
+
+    const actions = document.createElement('div');
+    actions.className = 'd-flex gap-2';
+
+    const btnCancel = document.createElement('button');
+    btnCancel.className = 'btn btn-outline-secondary w-100';
+    btnCancel.textContent = 'Annuler';
+
+    const btnDelete = document.createElement('button');
+    btnDelete.className = 'btn btn-danger w-100';
+    btnDelete.textContent = 'Supprimer';
+
+    actions.appendChild(btnCancel);
+    actions.appendChild(btnDelete);
+    carte.appendChild(actions);
+
+    btnCancel.addEventListener('click', () => {
+      carte.remove();
+      boutonSupprimer.disabled = false;
+    });
+
+    btnDelete.addEventListener('click', async () => {
+      const saisie = (input.value).trim();
+      const actual = (moto.immatriculation).trim();
+
+      if (!saisie) {
+        alert('Veuillez saisir l\'immatriculation pour confirmer.');
+        return;
+      }
+
+      try {
+        await deleteMotoByImmat({ immatriculation: actual });
+        window.location.href = './moto.html';
+      } catch (err) {
+        console.error(err);
+        alert('Erreur lors de la suppression.');
+      }
+    });
+
+    return carte;
+  }
+
+  boutonSupprimer.addEventListener('click', () => {
+    const carteSupp = creerCarteSuppressionMoto(m);
+    card.appendChild(carteSupp);
   });
 
   card.appendChild(cardBody);

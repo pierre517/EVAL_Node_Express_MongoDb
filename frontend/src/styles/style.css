@@ -119,6 +119,37 @@ header h1 {
   align-items: center;
 }
 
+.delete-card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255,255,255,0.98);
+  z-index: 30;
+  padding: 1rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.delete-card .confirm-input {
+  max-width: 320px;
+}
+
+.delete-card .card-title {
+  margin-bottom: 0.25rem;
+}
+
+.delete-card .card-text {
+  text-align: center;
+  max-width: 420px;
+}
+
+
 #titreUser,
 .titreDeleteUser {
   font-size: 3rem;
