@@ -21,7 +21,10 @@ body {
 .vehicle-card {
   border-radius: 8px;
   overflow: hidden;
-  margin-top: 8vh;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 340px; 
 }
 
 .moto-page .vehicle-card {
@@ -31,11 +34,47 @@ body {
 .vehicle-card .card-img-top {
   object-fit: cover;
   height: 180px;
+  width: 100%;
+  flex-shrink: 0; 
 }
 
 .vehicle-card:hover {
   transform: translateY(-4px);
   transition: transform 0.15s ease-in-out;
+}
+
+.vehicle-card .card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1 1 auto;
+}
+
+.voir-btn {
+  margin-top: 0.75rem;
+  align-self: flex-start;
+}
+
+.renseignements {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-top: 0.5rem;
+}
+.renseignements > div {
+  font-size: 0.95rem;
+}
+
+.row > .col {
+  display: flex;
+  align-items: stretch;
+}
+
+.row > .col > .vehicle-card {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 0;
+  height: 100%;
 }
 
 main.container {

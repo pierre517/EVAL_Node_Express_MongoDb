@@ -13,15 +13,37 @@
     <title>Collection motos</title>
   </head>
   <body>
-    <header>
-      <h1 class="text-center mb-4 text-primary">Ma Concession</h1>
-      <nav class="navbar navbar-dark bg-primary">
-        <div class="container-fluid d-flex justify-content-start gap-3">
-          <a class="nav-link text-white" href="../user/user.html">Mon compte</a>
-          <a class="nav-link text-white" href="../voiture/voiture.html"
-            >Voitures</a
+        <header>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+          <a class="navbar-brand d-flex align-items-center" href="/frontend/index.html">
+            <span class="fs-3 fw-bold">Ma Concession</span>
+          </a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#mainNav"
+            aria-controls="mainNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
           >
-          <a class="nav-link text-white" href="../moto/moto.html">Motos</a>
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="mainNav">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link text-white" href="../user/user.html">Mon compte</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active text-white" aria-current="page" href="../voiture/voiture.html">Voitures</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-white" href="../moto/moto.html">Motos</a>
+              </li>
+            </ul>
+          </div>
         </div>
       </nav>
     </header>
