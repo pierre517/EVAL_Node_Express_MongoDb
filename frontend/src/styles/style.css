@@ -24,7 +24,7 @@ body {
   display: flex;
   flex-direction: column;
   height: 100%;
-  min-height: 340px; 
+  min-height: 340px;
 }
 
 .moto-page .vehicle-card {
@@ -35,7 +35,7 @@ body {
   object-fit: cover;
   height: 180px;
   width: 100%;
-  flex-shrink: 0; 
+  flex-shrink: 0;
 }
 
 .vehicle-card:hover {
@@ -231,8 +231,13 @@ header h1 {
   transition: 0.5s;
 }
 
-.divAddVehicule {
+.divAddVehicule,
+.divAddVoiture {
   width: 50%;
   display: flex;
   justify-content: space-between;
+}
+
+.divAddVoiture {
+  margin-bottom: 2rem;
 }
