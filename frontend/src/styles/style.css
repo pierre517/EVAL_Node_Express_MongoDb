@@ -202,7 +202,8 @@ header h1 {
 }
 
 .modifUser,
-.deleteUser {
+.deleteUser,
+.addButton {
   text-decoration: none;
   color: black;
   font-size: 1.2rem;
@@ -216,9 +217,10 @@ header h1 {
 }
 
 .modifUser:hover,
-.modifUserButton:hover {
+.modifUserButton:hover,
+.addButton:hover {
   color: whitesmoke;
-  background-color: rgb(59, 59, 252);
+  background-color: rgb(59, 104, 252);
   transition: 0.5s;
 }
 
@@ -227,4 +229,10 @@ header h1 {
   color: whitesmoke;
   background-color: rgb(255, 72, 72);
   transition: 0.5s;
+}
+
+.divAddVehicule {
+  width: 50%;
+  display: flex;
+  justify-content: space-between;
 }
